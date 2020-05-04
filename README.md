@@ -1,7 +1,8 @@
 # lyricworks
 
-## Team Members 
+## Team Members
 
+- Andrew
 - Simon Myers
 - Christopher Lee
-- Emmanuel  Remi Akinwale
+- Emmanuel Remi Akinwale
