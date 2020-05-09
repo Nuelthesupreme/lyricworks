@@ -40,11 +40,45 @@ function lyricSubmission() {
   function printData(data) {
     //Setting Variable for data result
     console.log(data);
-    let resultTitle = data.response.hits[0].result.title;
-    let resultArtistName = data.response.hits[0].result.primary_artist.name;
+    resultTitle = data.response.hits[0].result.title;
+    resultArtistName = data.response.hits[0].result.primary_artist.name;
     let resultImg = data.response.hits[0].result.header_image_thumbnail_url;
-    ///////////////////////////Fetch Youtube Video with API///////////////////////////
+    let containerDiv = $("<div>").attr(
+      "class",
+      "ui middle aligned stackable grid container"
+    );
+    let imageRow = $("<div>").attr("class", "row segment");
+    let textRow = $("<div>").attr("class", "eight wide column");
+    let imagePositionDiv = $("<div>").attr(
+      "class",
+      "two wide left column segment small"
+    );
+    //Creating song title tag
+    let songTitleTag = $("<h3>")
+      .text(resultTitle)
+      .attr("id", "song-title")
+      .attr("class", "ui header");
 
+    //Creating dynamic tags for data
+    let songArtistTag = $("<p>")
+      .text(resultArtistName)
+      .attr("id", "song-artist");
+
+    let songImage = $("<img>")
+      .attr("src", resultImg)
+      .attr("alt", resultTitle + "image")
+
+      .attr("id", "song-image");
+
+    //Appending data to result container
+
+    textRow.append(songTitleTag, songArtistTag);
+    imagePositionDiv.append(songImage);
+    imageRow.append(imagePositionDiv, textRow);
+    containerDiv.append(imageRow);
+    console.log(containerDiv);
+    $("#result-container").append(containerDiv);
+    /////////////Youtube//////////
     var settings_youtube = {
       async: true,
       crossDomain: true,
@@ -53,7 +87,7 @@ function lyricSubmission() {
 
       data: {
         key: "AIzaSyCPMGypoq_TUL0nkKuCsz6ECBIg0PMnLNk",
-        q: resultTitle + " - " + resultArtistName,
+        q: resultTitle + " " + resultArtistName,
         part: "snippet",
         maxResults: 1,
         type: "video",
@@ -61,66 +95,28 @@ function lyricSubmission() {
       },
     };
 
-    function searchYoutubeVideo(data) {
-      console.log(data.items[0].id.videoId);
-      let youtubeVideoId = data.items[0].id.videoId;
-      let youtubeVideo = "https://www.youtube.com/embed/" + youtubeVideoId;
-      console.log(youtubeVideo);
-      youtubeIframe = $("<iframe>")
-        .attr("src", youtubeVideo)
+    function printYoutube(dataYoutube) {
+      console.log(dataYoutube);
+      let youtubeVideoId = dataYoutube.items[0].id.videoId;
+      let youtubeVideoUrl = "https://www.youtube.com/embed/" + youtubeVideoId;
+      console.log(youtubeVideoUrl);
+
+      let youtubeiframe = $("<iframe>")
+        .attr("src", youtubeVideoUrl)
+        .attr("frameborder", "0")
+
         .attr(
           "allow",
           "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        )
-        .attr("allowfullscreen")
-        .attr("frameborder", "0");
+        );
 
-      let containerDiv = $("<div>").attr(
-        "class",
-        "ui middle aligned stackable grid container"
-      );
-      let imageRow = $("<div>").attr("class", "row segment");
-      let textRow = $("<div>").attr("class", "eight wide column");
-      let imagePositionDiv = $("<div>").attr(
-        "class",
-        "two wide left column segment small"
-      );
-
-      //Creating song title tag
-      let songTitleTag = $("<h3>")
-        .text(resultTitle)
-        .attr("id", "song-title")
-        .attr("class", "ui header");
-
-      //Creating dynamic tags for data
-      let songArtistTag = $("<p>")
-        .text(resultArtistName)
-        .attr("id", "song-artist");
-
-      let songImage = $("<img>")
-        .attr("src", resultImg)
-        .attr("alt", resultTitle + "image")
-
-        .attr("id", "song-image");
-
-      //Appending data to result container
-
-      textRow.append(songTitleTag, songArtistTag);
-      imagePositionDiv.append(songImage);
-      imageRow.append(imagePositionDiv, textRow);
-      containerDiv.append(imageRow);
-      console.log(containerDiv);
-      $("#result-container").append(containerDiv);
+      imageRow.append(youtubeiframe);
     }
 
-    function youtubeError() {
-      console.log("youtube video cant be played");
-    }
+    $.ajax(settings_youtube).then(printYoutube);
 
-    $.ajax(settings_youtube).then(searchYoutubeVideo).catch(youtubeError);
+    /////////////////////////////
   }
-
-  //////////////////////////////////////////////////////
 
   function errorFunction() {
     let warning = $("<p>").text("Please enter a valid lyric");
