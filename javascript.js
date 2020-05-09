@@ -38,10 +38,19 @@ function lyricSubmission() {
   //This function append the searched song title, song and image to the result container
   function printData(data) {
     //Setting Variable for data result
+    console.log(data)
     let resultTitle = data.response.hits[0].result.title;
     let resultArtistName = data.response.hits[0].result.primary_artist.name;
     let resultImg = data.response.hits[0].result.header_image_thumbnail_url;
-    let songTitleTag = $("<h2>").text(resultTitle).attr("id", "song-title");
+    
+    let containerDiv = $("<div>").attr("class", "ui middle aligned stackable grid container")
+    let imageRow = $("<div>").attr("class", "row segment")
+    let textRow = $("<div>").attr("class", "eight wide column")
+    let imagePositionDiv = $("<div>").attr("class", "two wide left column segment small")
+    //Creating song title tag
+    let songTitleTag = $("<h3>").text(resultTitle)
+      .attr("id", "song-title")
+      .attr("class", "ui header");
 
     //Creating dynamic tags for data
     let songArtistTag = $("<p>")
@@ -51,16 +60,24 @@ function lyricSubmission() {
     let songImage = $("<img>")
       .attr("src", resultImg)
       .attr("alt", resultTitle + "image")
+      
       .attr("id", "song-image");
 
     //Appending data to result container
-    $("#result-container").append(songTitleTag, songArtistTag, songImage);
+    
+    textRow.append(songTitleTag, songArtistTag);
+    imagePositionDiv.append(songImage);
+    imageRow.append(imagePositionDiv, textRow);
+    containerDiv.append(imageRow);
+    console.log(containerDiv)
+    $("#result-container").append(containerDiv);
   }
 
   function errorFunction() {
     let warning = $("<p>").text("Please enter a valid lyric");
     warning.css("color", "red");
     $("#input-section").append(warning);
+    console.log("error function")
   }
 
   $.ajax(settings).then(printData).catch(errorFunction);
