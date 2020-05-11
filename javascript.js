@@ -31,6 +31,7 @@ function lyricSubmission() {
   //add if statement so if search button is pressed multiple times, prevent reload, if different clear text and load new results
   ////////////////////////////////////////////////////////////////////////////////
   let lyricInput = $("#input-section-bar").val().trim();
+  lastSearchedLyric = lyricInput;
 
   //This is the API config for the Genius API
   const settings = {
@@ -49,11 +50,15 @@ function lyricSubmission() {
     const resultTitle = data.result.title;
     const resultArtistName = data.result.primary_artist.name;
     const resultImg = data.result.header_image_thumbnail_url;
-    const containerDiv = $("<div>").addClass("ui middle aligned stackable grid container");
+    const containerDiv = $("<div>").addClass(
+      "ui middle aligned stackable grid container"
+    );
     const imageRow = $("<div>").addClass("row segment");
     const textRow = $("<div>").addClass("eight wide column");
-    const imagePositionDiv = $("<div>").addClass("two wide left column segment small");
-    
+    const imagePositionDiv = $("<div>").addClass(
+      "two wide left column segment small"
+    );
+
     //Creating song title tag
     const songTitleTag = $("<h3>")
       .text(resultTitle)
@@ -79,7 +84,7 @@ function lyricSubmission() {
 
     $("#result-container").append(containerDiv);
 
-    renderYoutubePlayer(resultTitle + " " + resultArtistName, imageRow)
+    renderYoutubePlayer(resultTitle + " " + resultArtistName, imageRow);
   }
 
   function renderYoutubePlayer(queryString, imageRow) {
@@ -113,32 +118,44 @@ function lyricSubmission() {
       imageRow.append(youtubeiframe);
     }
 
-    $.ajax(settingsYoutube).then(printYoutube);
+    function youtubeProblem(data) {
+      console.log(data);
+    }
+
+    $.ajax(settingsYoutube).then(printYoutube).catch(youtubeProblem);
   }
 
   //This function append the searched song title, song and image to the result container
   function printData(data) {
     //Setting Variable for data result
     console.log(data);
-    const hits = data.response.hits
-    let count = 5
-    
+    const hits = data.response.hits;
+    let count = 5;
+
     if (hits.length < 5) {
-      count = hits.length
+      count = hits.length;
     }
     for (let i = 0; i < count; i++) {
-      renderResultImage(hits[i])
+      renderResultImage(hits[i]);
     }
   }
-
-
 
   $.ajax(settings).then(printData).catch(errorFunction);
 }
 
-$("#submit-btn").click(lyricSubmission);
+//lastSearchedLyric is the variable for last lyric entered to search bar. USer cannot search a lyric identity with lastSearchedLyric
+var lastSearchedLyric;
+
+$("#submit-btn").click(function (e) {
+  if ($("#input-section-bar").val().trim() !== lastSearchedLyric) {
+    lyricSubmission();
+  }
+});
 $("#input-section-bar").keypress(function (e) {
-  if (e.which == 13) {
+  if (
+    (e.which == 13) &
+    ($("#input-section-bar").val().trim() !== lastSearchedLyric)
+  ) {
     lyricSubmission();
   }
 });
