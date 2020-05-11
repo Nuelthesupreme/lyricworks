@@ -25,8 +25,9 @@ function errorFunction() {
 function lyricSubmission() {
   event.preventDefault();
 
-  //remove the previous error sign by targeting all p tag of input-section
+  //remove the previous error sign by targeting all p tag of input-section and previous search result
   $("#input-section").children("p").remove();
+  $("#result-container").children("div").remove();
 
   //add if statement so if search button is pressed multiple times, prevent reload, if different clear text and load new results
   ////////////////////////////////////////////////////////////////////////////////
