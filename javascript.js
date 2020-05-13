@@ -24,6 +24,7 @@ function errorFunction() {
 
 function lyricSubmission() {
   event.preventDefault();
+  $("#instructions").addClass("hide")
 
   //remove the previous error sign by targeting all p tag of input-section and previous search result
   $("#input-section").children("p").remove();
