@@ -1,11 +1,11 @@
 body {
   background-color: white;
 
-  font-family: "Special Elite", cursive;
+ font-family: 'Raleway', sans-serif;
 }
 
 h1 {
-  font-family: "Special Elite", cursive;
+  font-family: 'Raleway', sans-serif;
 
   background-color: grey;
   color: white;
@@ -22,14 +22,14 @@ h3 {
 #input-section {
   width: 100%;
   padding: 50x 50px;
-  font-family: "Special Elite", cursive;
+  font-family: "Raleway", sans-serif;
   margin: 50px;
 }
 
 input,
 select,
 textarea {
-  font-family: "Special Elite", cursive;
+  font-family: " Raleway",  sans-serif;
   border-style: solid;
   border-width: 1px;
   border-color: grey;
@@ -41,7 +41,7 @@ textarea {
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  box-shadow: 0 0 1px white;
   position: relative;
   -webkit-transition-property: color;
   transition-property: color;
@@ -57,7 +57,7 @@ textarea {
   left: 0;
   right: 0;
   bottom: 0;
-  background: white;
+  background: rgb(121, 213, 231);
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
   -webkit-transform-origin: 0 50%;
@@ -86,7 +86,7 @@ textarea {
 ::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
 
-  font-family: "Special Elite", cursive;
+ font-family: 'Raleway', sans-serif;
   color: grey;
   opacity: 1; /* Firefox */
 }
@@ -97,15 +97,15 @@ textarea {
   border-color: grey;
   margin-top: 50px;
   margin-bottom: 50px;
-  background-color: black;
+  background-color:white ;
 }
 
 #song-artist {
-  color: white;
+  color:rgb(0, 0, 0);
 }
 
 #song-title {
-  font-family: "Special Elite", cursive;
+ font-family: 'Raleway', sans-serif;
   border-style: solid;
   border-width: 1px;
   border-color: black;
@@ -113,5 +113,5 @@ textarea {
 }
 
 #submit-btn {
-  font-family: "Special Elite", cursive;
+ font-family: 'Raleway', sans-serif;
 }
