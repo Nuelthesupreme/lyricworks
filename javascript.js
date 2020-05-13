@@ -45,7 +45,7 @@ function lyricSubmission() {
     let resultImg = data.response.hits[0].result.header_image_thumbnail_url;
     let containerDiv = $("<div>").attr(
       "class",
-      "ui middle aligned stackable grid container"
+      "ui middle aligned stackable grid container resultBox hvr-bounce-to-right"
     );
     let imageRow = $("<div>").attr("class", "row segment");
     let textRow = $("<div>").attr("class", "eight wide column");
@@ -58,17 +58,20 @@ function lyricSubmission() {
       .text(resultTitle)
       .attr("id", "song-title")
       .attr("class", "ui header");
+      
 
     //Creating dynamic tags for data
     let songArtistTag = $("<p>")
       .text(resultArtistName)
       .attr("id", "song-artist");
+      
 
     let songImage = $("<img>")
       .attr("src", resultImg)
       .attr("alt", resultTitle + "image")
 
       .attr("id", "song-image");
+    
 
     //Appending data to result container
 
