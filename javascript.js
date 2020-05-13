@@ -54,7 +54,7 @@ function lyricSubmission() {
     const containerDiv = $("<div>").addClass(
       "ui middle aligned stackable grid container resultBox hvr-bounce-to-right"
     );
-    const imageRow = $("<div>").addClass("row segment");
+    const imageRow = $("<div>").addClass("row marginBottomTest segment");
     const textRow = $("<div>").addClass("eight wide column");
     const imagePositionDiv = $("<div>").addClass(
       "two wide left column segment small"
@@ -86,6 +86,7 @@ function lyricSubmission() {
     containerDiv.append(imageRow);
 
     $("#result-container").append(containerDiv);
+    $("#result-container").append($("<br>"));
 
     renderYoutubePlayer(resultTitle + " " + resultArtistName, imageRow);
   }
