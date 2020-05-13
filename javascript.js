@@ -14,16 +14,28 @@
 From the result append the title, the artist and the imagine of the song which the lyric belong to
 If no result, there will be an error message*/
 
+function errorFunction() {
+  const warning = $("<p>")
+    .addClass("ui red header")
+    .text("Please enter a valid lyric");
+  //  change header to a smaller text find in semantic ui
+  $("#input-section").append(warning);
+}
+
 function lyricSubmission() {
   event.preventDefault();
 
-  //remove the previous error sign by targeting all p tag of input-section
+  //remove the previous error sign by targeting all p tag of input-section and previous search result
   $("#input-section").children("p").remove();
+  $("#result-container").children("div").remove();
 
+  //add if statement so if search button is pressed multiple times, prevent reload, if different clear text and load new results
+  ////////////////////////////////////////////////////////////////////////////////
   let lyricInput = $("#input-section-bar").val().trim();
+  lastSearchedLyric = lyricInput;
 
   //This is the API config for the Genius API
-  var settings = {
+  const settings = {
     async: true,
     //CROS enabler
     crossDomain: true,
@@ -35,39 +47,33 @@ function lyricSubmission() {
       "x-rapidapi-key": "4c41606b11mshd75147a6a3e6b95p17577fjsnddd0bfa707d3",
     },
   };
-
-  //This function append the searched song title, song and image to the result container
-  function printData(data) {
-    //Setting Variable for data result
-    console.log(data);
-    resultTitle = data.response.hits[0].result.title;
-    resultArtistName = data.response.hits[0].result.primary_artist.name;
-    let resultImg = data.response.hits[0].result.header_image_thumbnail_url;
-    let containerDiv = $("<div>").attr(
-      "class",
+  function renderResultImage(data) {
+    const resultTitle = data.result.title;
+    const resultArtistName = data.result.primary_artist.name;
+    const resultImg = data.result.header_image_thumbnail_url;
+    const containerDiv = $("<div>").addClass(
       "ui middle aligned stackable grid container"
     );
-    let imageRow = $("<div>").attr("class", "row segment");
-    let textRow = $("<div>").attr("class", "eight wide column");
-    let imagePositionDiv = $("<div>").attr(
-      "class",
+    const imageRow = $("<div>").addClass("row segment");
+    const textRow = $("<div>").addClass("eight wide column");
+    const imagePositionDiv = $("<div>").addClass(
       "two wide left column segment small"
     );
+
     //Creating song title tag
-    let songTitleTag = $("<h3>")
+    const songTitleTag = $("<h3>")
       .text(resultTitle)
       .attr("id", "song-title")
-      .attr("class", "ui header");
+      .addClass("ui header");
 
     //Creating dynamic tags for data
-    let songArtistTag = $("<p>")
+    const songArtistTag = $("<p>")
       .text(resultArtistName)
       .attr("id", "song-artist");
 
-    let songImage = $("<img>")
+    const songImage = $("<img>")
       .attr("src", resultImg)
-      .attr("alt", resultTitle + "image")
-
+      .attr("alt", resultTitle + " image")
       .attr("id", "song-image");
 
     //Appending data to result container
@@ -76,10 +82,14 @@ function lyricSubmission() {
     imagePositionDiv.append(songImage);
     imageRow.append(imagePositionDiv, textRow);
     containerDiv.append(imageRow);
-    console.log(containerDiv);
+
     $("#result-container").append(containerDiv);
-    /////////////Youtube//////////
-    var settings_youtube = {
+
+    renderYoutubePlayer(resultTitle + " " + resultArtistName, imageRow);
+  }
+
+  function renderYoutubePlayer(queryString, imageRow) {
+    const settingsYoutube = {
       async: true,
       crossDomain: true,
       url: "https://www.googleapis.com/youtube/v3/search",
@@ -87,7 +97,7 @@ function lyricSubmission() {
 
       data: {
         key: "AIzaSyCPMGypoq_TUL0nkKuCsz6ECBIg0PMnLNk",
-        q: resultTitle + " " + resultArtistName,
+        q: queryString,
         part: "snippet",
         maxResults: 1,
         type: "video",
@@ -96,15 +106,11 @@ function lyricSubmission() {
     };
 
     function printYoutube(dataYoutube) {
-      console.log(dataYoutube);
-      let youtubeVideoId = dataYoutube.items[0].id.videoId;
-      let youtubeVideoUrl = "https://www.youtube.com/embed/" + youtubeVideoId;
-      console.log(youtubeVideoUrl);
-
-      let youtubeiframe = $("<iframe>")
+      const youtubeVideoId = dataYoutube.items[0].id.videoId;
+      const youtubeVideoUrl = "https://www.youtube.com/embed/" + youtubeVideoId;
+      const youtubeiframe = $("<iframe>")
         .attr("src", youtubeVideoUrl)
         .attr("frameborder", "0")
-
         .attr(
           "allow",
           "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -113,19 +119,44 @@ function lyricSubmission() {
       imageRow.append(youtubeiframe);
     }
 
-    $.ajax(settings_youtube).then(printYoutube);
+    function youtubeProblem(data) {
+      console.log(data);
+    }
 
-    /////////////////////////////
+    $.ajax(settingsYoutube).then(printYoutube).catch(youtubeProblem);
   }
 
-  function errorFunction() {
-    let warning = $("<p>").text("Please enter a valid lyric");
-    warning.css("color", "red");
-    $("#input-section").append(warning);
-    console.log("error function");
+  //This function append the searched song title, song and image to the result container
+  function printData(data) {
+    //Setting Variable for data result
+    console.log(data);
+    const hits = data.response.hits;
+    let count = 5;
+
+    if (hits.length < 5) {
+      count = hits.length;
+    }
+    for (let i = 0; i < count; i++) {
+      renderResultImage(hits[i]);
+    }
   }
 
   $.ajax(settings).then(printData).catch(errorFunction);
 }
 
-$("#submit-btn").click(lyricSubmission);
+//lastSearchedLyric is the variable for last lyric entered to search bar. USer cannot search a lyric identity with lastSearchedLyric
+var lastSearchedLyric;
+
+$("#submit-btn").click(function (e) {
+  if ($("#input-section-bar").val().trim() !== lastSearchedLyric) {
+    lyricSubmission();
+  }
+});
+$("#input-section-bar").keypress(function (e) {
+  if (
+    (e.which == 13) &
+    ($("#input-section-bar").val().trim() !== lastSearchedLyric)
+  ) {
+    lyricSubmission();
+  }
+});
