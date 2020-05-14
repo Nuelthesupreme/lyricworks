@@ -15,7 +15,6 @@ From the result append the title, the artist and the imagine of the song which t
 If no result, there will be an error message*/
 
 function errorFunction() {
-  console.log(error);
   const warning = $("<p>")
     .addClass("ui red header")
     .text("Please enter a valid lyric");
@@ -25,7 +24,7 @@ function errorFunction() {
 
 function lyricSubmission() {
   event.preventDefault();
-  $("#instructions").addClass("hide");
+  $("#spacing").remove();
 
   //remove the previous error sign by targeting all p tag of input-section and previous search result
   $("#input-section").children("p").remove();
@@ -86,7 +85,7 @@ function lyricSubmission() {
     containerDiv.append(imageRow);
 
     $("#result-container").append(containerDiv);
-    $("#result-container").append($("<br>"));
+
 
     renderYoutubePlayer(resultTitle + " " + resultArtistName, imageRow);
   }
@@ -123,7 +122,7 @@ function lyricSubmission() {
     }
 
     function youtubeProblem(data) {
-      console.log(data);
+      console.log("youtube API error");
     }
 
     $.ajax(settingsYoutube).then(printYoutube).catch(youtubeProblem);
@@ -132,7 +131,6 @@ function lyricSubmission() {
   //This function append the searched song title, song and image to the result container
   function printData(data) {
     //Setting Variable for data result
-    console.log(data);
     const hits = data.response.hits;
     if (hits.length != 0) {
       let count = 5;
@@ -144,7 +142,6 @@ function lyricSubmission() {
         renderResultImage(hits[i]);
       }
     } else {
-      console.log("error");
       const warning = $("<p>")
         .addClass("ui red header")
         .text("Please enter a valid lyric");
@@ -172,3 +169,11 @@ $("#input-section-bar").keypress(function (e) {
     lyricSubmission();
   }
 });
+$('.info.icon')
+      .popup({
+        on: 'hover'
+      });
+    // $('input')
+    //   .popup({
+    //     on: 'focus'
+    //   });
