@@ -15,6 +15,7 @@ From the result append the title, the artist and the imagine of the song which t
 If no result, there will be an error message*/
 
 function errorFunction() {
+  console.log(error);
   const warning = $("<p>")
     .addClass("ui red header")
     .text("Please enter a valid lyric");
@@ -24,6 +25,7 @@ function errorFunction() {
 
 function lyricSubmission() {
   event.preventDefault();
+  $("#instructions").addClass("hide");
 
   //remove the previous error sign by targeting all p tag of input-section and previous search result
   $("#input-section").children("p").remove();
@@ -52,9 +54,9 @@ function lyricSubmission() {
     const resultArtistName = data.result.primary_artist.name;
     const resultImg = data.result.header_image_thumbnail_url;
     const containerDiv = $("<div>").addClass(
-      "ui middle aligned stackable grid container"
+      "ui middle aligned stackable grid container resultBox hvr-bounce-to-right"
     );
-    const imageRow = $("<div>").addClass("row segment");
+    const imageRow = $("<div>").addClass("row marginBottomTest segment");
     const textRow = $("<div>").addClass("eight wide column");
     const imagePositionDiv = $("<div>").addClass(
       "two wide left column segment small"
@@ -84,6 +86,7 @@ function lyricSubmission() {
     containerDiv.append(imageRow);
 
     $("#result-container").append(containerDiv);
+    $("#result-container").append($("<br>"));
 
     renderYoutubePlayer(resultTitle + " " + resultArtistName, imageRow);
   }
@@ -131,13 +134,22 @@ function lyricSubmission() {
     //Setting Variable for data result
     console.log(data);
     const hits = data.response.hits;
-    let count = 5;
+    if (hits.length != 0) {
+      let count = 5;
 
-    if (hits.length < 5) {
-      count = hits.length;
-    }
-    for (let i = 0; i < count; i++) {
-      renderResultImage(hits[i]);
+      if (hits.length < 5) {
+        count = hits.length;
+      }
+      for (let i = 0; i < count; i++) {
+        renderResultImage(hits[i]);
+      }
+    } else {
+      console.log("error");
+      const warning = $("<p>")
+        .addClass("ui red header")
+        .text("Please enter a valid lyric");
+      //  change header to a smaller text find in semantic ui
+      $("#input-section").append(warning);
     }
   }
 
