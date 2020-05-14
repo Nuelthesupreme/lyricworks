@@ -24,14 +24,13 @@
 
   <body>
     <header>
-      <div id="spacing"></div>
-      <div>
-        <h1>Lyricube</h1>
-      </div>
+      <section id="spacing"></section>
+        <h1>Lyricube</h1>   
     </header>
     <main>
-      <div id="input-section" class="ui center aligned basic segment">
-        <i class="info icon" data-content="Search part of the lyrics you remember to find the top related song" data-variation="large" data-position="bottom center"></i><div class="ui left icon action input">
+      <section id="input-section" class="ui center aligned basic segment">
+        <i class="info icon" data-content="Search part of the lyrics you remember to find the top related song" data-variation="large" data-position="bottom center"></i>
+        <div class="ui left icon action input">
           
           <i class="search icon"></i>
           <!-- change this to a form for auto enter submit -->
@@ -40,41 +39,37 @@
             type="text"
             placeholder="Search Lyrics"
           />
-          <div
+          <button
             id="submit-btn"
             class="ui submit button hvr-bounce-to-right-two"
           >
           <!-- add lightgrey into class again -->
             Search
-          </div>
+          </button>
         </div>
-      </div>
-      <div id="result-container"></div>
+      </section>
+      <section id="result-container"></section>
     </main>
 
     <footer class="ui vertical footer segment">
-      <div class="ui container">
-        <div class="ui stackable inverted divided equal height stackable grid">
-          <div class="three wide column" id="footers">
+      <section class="ui vertical footer container">
+        <section class="ui stackable inverted divided equal height stackable grid">
+          <article class="three wide column" id="footers">
             <h4 class="ui inverted header">In Cooperation With:</h4>
-            <div class="ui link list">
-              
-           
-            </div>
-          </div>
-          <div class="two wide column" id="footers">
+          </article>
+          <article class="two wide column" id="footers">
             <h4 class="ui inverted header"></h4>
-            <div class="ui link list">
+            <nav class="ui link list">
               <a href="https://genius.com/" class="item">Genius</a>
               <a href="https://youtube.com/" class="item">Youtube</a>                         
-            </div>
-          </div>
-          <div class="ten wide ui center aligned column" id="footers">
+            </nav>
+          </article>
+          <article class="ten wide ui center aligned column" id="footers">
             <h4 class="ui inverted header">Lightwork</h4>
             <p class="ui center aligned">© Copyright 2020 Lightwork LLC</p>
-          </div>
-        </div>
-      </div>
+          </article>
+        </section>
+      </section>
     </footer>
     <script src="javascript.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

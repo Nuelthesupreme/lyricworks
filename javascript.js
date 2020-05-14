@@ -28,7 +28,7 @@ function lyricSubmission() {
 
   //remove the previous error sign by targeting all p tag of input-section and previous search result
   $("#input-section").children("p").remove();
-  $("#result-container").children("div").remove();
+  $("#result-container").children("section").remove();
 
   //add if statement so if search button is pressed multiple times, prevent reload, if different clear text and load new results
   ////////////////////////////////////////////////////////////////////////////////
@@ -52,12 +52,12 @@ function lyricSubmission() {
     const resultTitle = data.result.title;
     const resultArtistName = data.result.primary_artist.name;
     const resultImg = data.result.header_image_thumbnail_url;
-    const containerDiv = $("<div>").addClass(
+    const containerDiv = $("<figure>").addClass(
       "ui middle aligned stackable grid container resultBox hvr-bounce-to-right"
     );
-    const imageRow = $("<div>").addClass("row marginBottomTest segment");
-    const textRow = $("<div>").addClass("eight wide column");
-    const imagePositionDiv = $("<div>").addClass(
+    const imageRow = $("<section>").addClass("row segment");
+    const textRow = $("<article>").addClass("eight wide column");
+    const imagePositionDiv = $("<figure>").addClass(
       "two wide left column segment small"
     );
 
