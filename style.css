@@ -1,6 +1,21 @@
 body {
   background-color: rgb(246, 246, 246);
   font-family: "Raleway", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
+
+footer{
+  background-color: rgb(121, 213, 231) !important;
+  
+}
+
+#footers {
+  box-shadow: none;
 }
 
 h1 {
