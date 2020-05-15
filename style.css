@@ -1,16 +1,32 @@
 body {
-  background-color: white;
-
+  background-color: rgb(246, 246, 246);
   font-family: "Raleway", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1;
+}
+
+footer{
+  background-color: rgb(121, 213, 231) !important;
+  
+}
+
+#footers {
+  box-shadow: none;
 }
 
 h1 {
   font-family: "Raleway", sans-serif;
   padding-top: 50px;
+  padding-bottom: 10px;
   /* background-color: grey;
   color: white; */
   text-align: center;
-  color:rgb(121, 213, 231)
+  color:rgb(121, 213, 231);
+  font-size: 3em
 }
 
 h4 {
@@ -105,7 +121,7 @@ textarea {
   -moz-box-shadow: -3px 10px 34px -14px rgba(51, 51, 51, 0.86);
   box-shadow: -3px 10px 34px -14px rgba(51, 51, 51, 0.86);
   margin-top: 50px;
-  margin-bottom: 20px !important;
+  margin-bottom: 10px !important;
   background-color: white;
   border-radius: 10px;
 }
@@ -124,13 +140,60 @@ textarea {
 
 #submit-btn {
   font-family: "Raleway", sans-serif;
-}
-
-.marginBottomTest {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  background-color: rgb(121, 213, 231);
 }
 
 .hide {
   display: none;
+}
+
+.hvr-bounce-to-right-two {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px white;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+}
+
+.hvr-bounce-to-right-two:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: lightgray;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-bounce-to-right-two:hover,
+.hvr-bounce-to-right-two:focus,
+.hvr-bounce-to-right-two:active {
+  color:rgb(121, 213, 231);
+}
+.hvr-bounce-to-right-two:hover:before,
+.hvr-bounce-to-right-two:focus:before,
+.hvr-bounce-to-right-two:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+}
+
+#spacing {
+  padding-top: 220px
 }

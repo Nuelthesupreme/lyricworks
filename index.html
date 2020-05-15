@@ -1,45 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lyricube - Music Finder</title>
 
-<head>
- 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lyricworks - Music Finder</title>
-  
-  
-  
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-  
-</head>
+  <body>
+    <header>
+      <section id="spacing"></section>
+        <h1>Lyricube</h1>   
+    </header>
+    <main>
+      <section id="input-section" class="ui center aligned basic segment">
+        <i class="info icon" data-content="Search part of the lyrics you remember to find the top related song" data-variation="large" data-position="bottom center"></i>
+        <div class="ui left icon action input">
+          
+          <i class="search icon"></i>
+          <!-- change this to a form for auto enter submit -->
+          <input
+            id="input-section-bar"
+            type="text"
+            placeholder="Search Lyrics"
+          />
+          <button
+            id="submit-btn"
+            class="ui submit button hvr-bounce-to-right-two"
+          >
+          <!-- add lightgrey into class again -->
+            Search
+          </button>
+        </div>
+      </section>
+      <section id="result-container"></section>
+    </main>
 
-<body>
-  <div>
-    <h1>Lyricube</h1>
-    <h4 id="instructions">Have a song stuck in your head but can't remember what it's called? <br> Search the lyricube with the part you remember to find out the top songs</h4>
-  </div>
-  <div  id="input-section" class="ui center aligned basic segment">
-    <div class="ui left icon action input">
-      <i class="search icon"></i>
-      <!-- change this to a form for auto enter submit -->
-      <input  id="input-section-bar" type="text" placeholder="Search Lyrics">
-      <div  id="submit-btn" class="ui lightgrey submit button hvr-bounce-to-right">Search</div>
-    </div>
-  </div>
-
-  <div id="result-container">
-    
-    
-    </div>
-
-  </div>
-  <script src="javascript.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</body>
+    <footer class="ui vertical footer segment">
+      <section class="ui vertical footer container">
+        <section class="ui stackable inverted divided equal height stackable grid">
+          <article class="three wide column" id="footers">
+            <h4 class="ui inverted header">In Cooperation With:</h4>
+          </article>
+          <article class="two wide column" id="footers">
+            <h4 class="ui inverted header"></h4>
+            <nav class="ui link list">
+              <a href="https://genius.com/" class="item">Genius</a>
+              <a href="https://youtube.com/" class="item">YouTube</a>                         
+            </nav>
+          </article>
+          <article class="ten wide ui center aligned column" id="footers">
+            <h4 class="ui inverted header">Lightwork</h4>
+            <p class="ui center aligned">© Copyright 2020 Lightwork LLC</p>
+          </article>
+        </section>
+      </section>
+    </footer>
+    <script src="javascript.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </body>
 </html>
+
+<!-- the Lyricube with the part of the lyrics you remember to find the top related songs -->

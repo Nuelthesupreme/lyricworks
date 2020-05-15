@@ -1,21 +1,20 @@
 ////////////////////Updating the html////////////////
 
-//////STEP 1: Create a basic html layout for the result to appear///////
+//STEP 1: Create a basic html layout for the result to appear
 
-//////STEP 2: Target the input area ///////
+//STEP 2: Target the input area
 
-//////STEP 3: Forward the result to the API ///////
+//STEP 3: Forward the result to the API
 
-//////STEP 4: Storage the song title, artist and image with a variable ///////
+//STEP 4: Storage the song title, artist and image with a variable
 
-//////STEP 5: Profit ///////
+//STEP 5: Test and Amend
 
 /*Search for the lyric provided in the input bar in the Genius Web API
 From the result append the title, the artist and the imagine of the song which the lyric belong to
 If no result, there will be an error message*/
 
 function errorFunction() {
-  console.log(error);
   const warning = $("<p>")
     .addClass("ui red header")
     .text("Please enter a valid lyric");
@@ -25,14 +24,9 @@ function errorFunction() {
 
 function lyricSubmission() {
   event.preventDefault();
-  $("#instructions").addClass("hide");
-
-  //remove the previous error sign by targeting all p tag of input-section and previous search result
+  $("#spacing").remove();
   $("#input-section").children("p").remove();
-  $("#result-container").children("div").remove();
 
-  //add if statement so if search button is pressed multiple times, prevent reload, if different clear text and load new results
-  ////////////////////////////////////////////////////////////////////////////////
   let lyricInput = $("#input-section-bar").val().trim();
   lastSearchedLyric = lyricInput;
 
@@ -53,12 +47,12 @@ function lyricSubmission() {
     const resultTitle = data.result.title;
     const resultArtistName = data.result.primary_artist.name;
     const resultImg = data.result.header_image_thumbnail_url;
-    const containerDiv = $("<div>").addClass(
+    const containerDiv = $("<figure>").addClass(
       "ui middle aligned stackable grid container resultBox hvr-bounce-to-right"
     );
-    const imageRow = $("<div>").addClass("row marginBottomTest segment");
-    const textRow = $("<div>").addClass("eight wide column");
-    const imagePositionDiv = $("<div>").addClass(
+    const imageRow = $("<section>").addClass("row segment");
+    const textRow = $("<article>").addClass("eight wide column");
+    const imagePositionDiv = $("<figure>").addClass(
       "two wide left column segment small"
     );
 
@@ -86,7 +80,7 @@ function lyricSubmission() {
     containerDiv.append(imageRow);
 
     $("#result-container").append(containerDiv);
-    $("#result-container").append($("<br>"));
+
 
     renderYoutubePlayer(resultTitle + " " + resultArtistName, imageRow);
   }
@@ -123,7 +117,7 @@ function lyricSubmission() {
     }
 
     function youtubeProblem(data) {
-      console.log(data);
+      console.log("youtube API error");
     }
 
     $.ajax(settingsYoutube).then(printYoutube).catch(youtubeProblem);
@@ -132,19 +126,18 @@ function lyricSubmission() {
   //This function append the searched song title, song and image to the result container
   function printData(data) {
     //Setting Variable for data result
-    console.log(data);
     const hits = data.response.hits;
-    if (hits.length != 0) {
+    if (hits.length !== 0) {
       let count = 5;
 
       if (hits.length < 5) {
         count = hits.length;
       }
+      $("#result-container").empty();
       for (let i = 0; i < count; i++) {
         renderResultImage(hits[i]);
       }
     } else {
-      console.log("error");
       const warning = $("<p>")
         .addClass("ui red header")
         .text("Please enter a valid lyric");
@@ -172,3 +165,11 @@ $("#input-section-bar").keypress(function (e) {
     lyricSubmission();
   }
 });
+$('.info.icon')
+      .popup({
+        on: 'hover'
+      });
+    // $('input')
+    //   .popup({
+    //     on: 'focus'
+    //   });
