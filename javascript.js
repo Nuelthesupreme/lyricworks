@@ -1,14 +1,14 @@
 ////////////////////Updating the html////////////////
 
-//////STEP 1: Create a basic html layout for the result to appear///////
+//STEP 1: Create a basic html layout for the result to appear
 
-//////STEP 2: Target the input area ///////
+//STEP 2: Target the input area
 
-//////STEP 3: Forward the result to the API ///////
+//STEP 3: Forward the result to the API
 
-//////STEP 4: Storage the song title, artist and image with a variable ///////
+//STEP 4: Storage the song title, artist and image with a variable
 
-//////STEP 5: Profit ///////
+//STEP 5: Test and Amend
 
 /*Search for the lyric provided in the input bar in the Genius Web API
 From the result append the title, the artist and the imagine of the song which the lyric belong to
@@ -25,13 +25,8 @@ function errorFunction() {
 function lyricSubmission() {
   event.preventDefault();
   $("#spacing").remove();
-
-  //remove the previous error sign by targeting all p tag of input-section and previous search result
   $("#input-section").children("p").remove();
-  // $("#result-container").children("section").remove();
 
-  //add if statement so if search button is pressed multiple times, prevent reload, if different clear text and load new results
-  ////////////////////////////////////////////////////////////////////////////////
   let lyricInput = $("#input-section-bar").val().trim();
   lastSearchedLyric = lyricInput;
 
