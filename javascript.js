@@ -28,7 +28,7 @@ function lyricSubmission() {
 
   //remove the previous error sign by targeting all p tag of input-section and previous search result
   $("#input-section").children("p").remove();
-  $("#result-container").children("section").remove();
+  // $("#result-container").children("section").remove();
 
   //add if statement so if search button is pressed multiple times, prevent reload, if different clear text and load new results
   ////////////////////////////////////////////////////////////////////////////////
@@ -132,12 +132,13 @@ function lyricSubmission() {
   function printData(data) {
     //Setting Variable for data result
     const hits = data.response.hits;
-    if (hits.length != 0) {
+    if (hits.length !== 0) {
       let count = 5;
 
       if (hits.length < 5) {
         count = hits.length;
       }
+      $("#result-container").empty();
       for (let i = 0; i < count; i++) {
         renderResultImage(hits[i]);
       }
