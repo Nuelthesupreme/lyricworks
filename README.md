@@ -6,6 +6,7 @@ Sometimes you have a song stuck in your head or even after hearing a song you li
 ## Technicalities:
 
 For the creation of the app, we used:
+- [Draw IO](https://app.diagrams.net): This allowed us to draw up a sketch of how each of us visualised our design and merge each idea into one (see image 8: design)
 - [Genius API](https://genius.com/developers): which allows us to input lyrics and returns popular songs that contain those lyrics.
 - [YouTube API](https://developers.google.com/youtube): which allows us to input the song titles and artist names received and returns the top related videos for each song.
 - [Rapid API](https://rapidapi.com/): Due to a CORS issue we encountered through the Genius API, we had to use Rapid API to bypass this issue.
@@ -18,7 +19,7 @@ For the styling of the application we used:
 
 ## Project management
 
-To manage the project we decided to use [Asana](https://app.asana.com/0/1174159538731249/board) as this allowed us to enter subtasks within each task to make the board cleaner and allowed us to tick off each one before completing the overriding task. It also kept the core functionalities of the other project management tools such as naming each section of tasks, appointing tasks to select individuals and setting a completion date.
+To manage the project we initially went with [Trello](https://trello.com) due to it's simplicity and ease of use however after researching some more we decided to use [Asana](https://app.asana.com/0/1174159538731249/board) as this allowed us to enter subtasks within each task (which wasn't possible on trello or several other products) to make the board cleaner and allowed us to tick off each one before completing the overriding task. It also kept the core functionalities of the other project management tools such as naming each section of tasks, appointing tasks to select individuals and setting a completion date.
 
 
 
@@ -37,16 +38,25 @@ To manage the project we decided to use [Asana](https://app.asana.com/0/11741595
 
 
 ## Problems encountered
-Asana not trello or monday.com
-CORS issue
-Semantic-UI limitations
-MusixMatch
+
+- The initial startup of everything was quite slow due to not being able to meetup in person and having to take turns talking in a online meeting room however we quickly adapted to this and had one individual drive (for writing the code or drawing the designs) and the others would take turns navigating (going into detail what to input in the designs and code)
+- When looking into the APIs we had a few ideas generated however with alot of them there were limitations to how much of their database we could access without paying a premium, before choosing the Genius API for the lyrics search function, we initially planned to use [MusixMatch](https://developer.musixmatch.com) however we only had access to 30% of their library without paying a premium.
+- When choosing the CSS framework we initially decided on [Tailwind CSS](https://tailwindcss.com) due to it's flexibility and smooth designs however when we started to implement it, we found that the documentation was very vague and did not provide much instructions on how to implement each styling change. After more research we decided to use [Semantic-UI](https://semantic-ui.com) instead which had more thorough documentation however as it isn't as flexible as Tailwind without having to manually code some styling parts, we had to compromise slightly on our designs to fit into it.
+- During the implementation of the Genius API, we encountered a CORS issue which prevented us from connecting to the API from a local domain. We decided to use Rapid API to bypass this as Rapid API acted as a proxy in which we pulled the information from instead.
+- After implementing both APIs, we encountered a Racing Condition where the YouTube API would try to fetch the information before the the Genius API had successfully returned the song information therefore the YouTube API would return back empty results. To resolve this we made sure that the Youtube API only runs after the promise of the Genius API had returned by isolating certain functionalities and moving them around. 
+- Due to the time constraints we weren't able to implement some of our initial ideas however we've decided that they would still be useful functionalities and have placed them in the future development section
 
 
 ## Successes
+-We were impressed with how easily we were able to move from our white-boarding and wire-framing, to implementing individual functional
+task elements.
+​
+-We were very happy about how we were able to 'chunk-down' the individual task elements, and then fit them together like a puzzle!
+​
+-We were successfully able to communicate and collaborate outside of classroom hours, by using technologies such as 'Asana', 'Zoom' and "Whats app".
 
 
-## Future functionalities
+## Future Development
 - Voice search functionality
 - Sidebar that shows search history
 - Incorporate more of the information received to allow the user to see more information about the song such as movies the song has featured in
@@ -82,8 +92,13 @@ Image 7: mobile view
 
 ![Image: mobile view](./Assets/mobile.png)
 
+Image 8: design
+
+![Image: design](./Assets/design.png)
+
 
 ## Resources 
+- DrawIO: [https://app.diagrams.net](https://app.diagrams.net)
 - Genius API: [https://genius.com/developers](https://genius.com/developers)
 - YouTube API: [https://developers.google.com/youtube](https://developers.google.com/youtube)
 - Rapid API: [https://rapidapi.com/](https://rapidapi.com)
