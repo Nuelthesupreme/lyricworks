@@ -43,37 +43,50 @@ Semantic-UI limitations
 MusixMatch
 
 
+## Successes
+
+
 ## Future functionalities
+- Voice search functionality
+- Sidebar that shows search history
+- Incorporate more of the information received to allow the user to see more information about the song such as movies the song has featured in
 
 
 ## Image Examples
 
 Image 1: tooltip 
+
 ![Image: tooltip](./Assets/tooltip.png)
 
 Image 2: results 
+
 ![Image: results](./Assets/results.png)
 
 Image 3: highlighted results 
+
 ![Image: highlighted results](./Assets/highlighted.png)
 
 image 4: lyrics error 
+
 ![Image: lyrics error](./Assets/lyrics.png)
 
 Image 5: YouTube error 
+
 ![Image: YouTube error](./Assets/youtube.png)
 
 Image 6: footer 
+
 ![Image: footer](./Assets/footer.png)
 
 Image 7: mobile view 
+
 ![Image: mobile view](./Assets/mobile.png)
 
 
 ## Resources 
-Genius API
-YouTube API
-Rapid API
-Semantic-UI
-Hover.css
-Asana
+- Genius API: [https://genius.com/developers](https://genius.com/developers)
+- YouTube API: [https://developers.google.com/youtube](https://developers.google.com/youtube)
+- Rapid API: [https://rapidapi.com/](https://rapidapi.com)
+- Semantic-UI: [https://semantic-ui.com/](https://semantic-ui.com)
+- Hover.css: [https://fonts.google.com](https://fonts.google.com)
+- Asana: [https://app.asana.com](https://app.asana.com)
